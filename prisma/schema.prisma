@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Message {
+  id                    String  @id @default(uuid()) @map("_id")
+  text                  String
+  messageType           String
+  messageStatus         String
+  receipientPhoneNumber String
+  senderPhoneNumber     String
+  zapiMessageId         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
